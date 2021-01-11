@@ -1,38 +1,93 @@
+:root {
+  --primary: lightgray;
+  --secondary: lightblue;
+  --dark: darkgray;
+  --shadow: 0 1px 5px gray;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  display: grid;
+  height: auto;
   min-height: 100vh;
+  text-align: center;
+  box-sizing: border-box;
+  background-color: var(--secondary);
+  grid-template-rows: 5% 95%;
+  grid-template-areas:
+    "header header header header"
+    "body body body body";
+}
+
+header {
   display: flex;
-  flex-direction: column;
+  grid-area: header;
+  background-color: rgb(56, 56, 65);
+  box-shadow: var(--shadow);
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.top-container {
+  display: grid;
+  grid-area: body;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "boxOne boxOne boxTwo boxTwo";
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 700px) {
+  .top-container {
+    grid-template-areas:
+      "boxOne"
+      "boxTwo";
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.box1,
+.box2 {
+  display: grid;
+  grid-template-rows: 5% 95%;
+  grid-template-areas:
+    "boxHeader"
+    "box";
+  margin: 5% 2.5% 5% 5%;
+  box-shadow: var(--shadow);
+  overflow: auto;
+}
+
+.box1 {
+  grid-area: boxOne;
+  background-color: var(--secondary);
+}
+
+.box2 {
+  grid-area: boxTwo;
+  background-color: var(--secondary);
+}
+
+.editorTitle,
+.previewTitle {
+  grid-area: boxHeader;
+  background-color: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editorContent,
+.previewContent {
+  grid-area: box;
+  width: 100%;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewContent {
+}
+
+textarea {
+  width: 100%;
+  height: 100%;
 }
